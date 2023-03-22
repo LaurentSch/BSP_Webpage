@@ -359,6 +359,118 @@ input, select, textarea {
 		border-color: rgba(255, 255, 255, 0.35);
 	}
 
+
+
+/* Radiobutton from https://codepen.io/AbubakerSaeed/pen/QPOZdYhttps://codepen.io/AbubakerSaeed/pen/QPOZdY*/
+
+.radiobutton {
+	--primary: hsl(191, 91%, 68%);
+	--other: hsl(195, 50%, 32%);
+
+	/*background: hsl(0, 0%, 98%);*/
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	margin: 12px 0;
+
+	cursor: pointer;
+	position: relative;
+}
+
+
+/* .design */
+.design {
+  width: 16px;
+  height: 16px;
+
+  border: 1px solid var(--other);
+  border-radius: 100%;
+  margin-right: 16px;
+
+  position: relative;
+}
+
+.design::before,
+.design::after {
+  content: "";
+  display: block;
+
+  width: inherit;
+  height: inherit;
+
+  border-radius: inherit;
+
+  position: absolute;
+  transform: scale(0);
+  transform-origin: center center;
+}
+
+.design:before {
+  background: var(--other);
+  opacity: 0;
+  transition: .3s;
+}
+
+.design::after {
+  background: var(--primary);
+  opacity: .4;
+  transition: .6s;
+}
+
+
+/* .text */
+.text {
+  color: var(--other);
+  font-weight: bold;
+}
+
+
+/* checked state */
+input:checked+.design::before {
+  opacity: 1;
+  transform: scale(.6);
+}
+
+
+/* other states */
+input:hover+.design,
+input:focus+.design {
+  border: 1px solid var(--primary);
+}
+
+input:hover+.design:before,
+input:focus+.design:before {
+  background: var(--primary);
+}
+
+input:hover~.text {
+  color: var(--primary);
+}
+
+input:focus+.design::after,
+input:active+.design::after {
+  opacity: .1;
+  transform: scale(2.6);
+}
+
+/* Continue base stylesheet*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Button */
 
 	/* input[type="submit"],
@@ -460,7 +572,7 @@ input, select, textarea {
 	.button {
 		background-color: transparent;
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-		color: #ffffff !important;
+		color: #e96060 !important;
 	}
 
 		input[type="submit"]:hover,
@@ -493,7 +605,7 @@ input, select, textarea {
 		button.primary,
 		.button.primary {
 			background-color: #8cc9f0;
-			color: #ffffff !important;
+			color: #fd8f8f !important;
 			box-shadow: none;
 		}
 
@@ -518,7 +630,7 @@ input, select, textarea {
 			input[type="button"].primary.icon:before,
 			button.primary.icon:before,
 			.button.primary.icon:before {
-				color: #ffffff !important;
+				color: #3f3d3d !important;
 			} */
 
 /* Form */

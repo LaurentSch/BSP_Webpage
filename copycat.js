@@ -22,40 +22,43 @@ function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
 			ID("puzzle-img").src = './data/image_A.jpg';
-			ID("option1").nextElementSibling.textContent = 'Option 1';
-			ID("option2").nextElementSibling.textContent = 'Option 2';
-			ID("option3").nextElementSibling.textContent = 'Option 3';
+			ID("option1-text").textContent = 'Option 1';
+			ID("option2-text").textContent = 'Option 2';
+			ID("option3-text").textContent = 'Option 3';
 			ID("optionEmpty").checked = true;
             ID("back-btn").disabled = true;
 			break;
 		case 2:
 			ID("puzzle-img").src = './data/image_B.jpg';
-			ID("option1").nextElementSibling.textContent = 'Option 4';
-			ID("option2").nextElementSibling.textContent = 'Option 5';
-			ID("option3").nextElementSibling.textContent = 'Option 6';
+			ID("option1-text").textContent = 'Option 4';
+			ID("option2-text").textContent = 'Option 5';
+			ID("option3-text").textContent = 'Option 6';
 			ID("optionEmpty").checked = true;
 			ID("back-btn").style.display = 'inline-block';
             ID("back-btn").disabled = false;
 			break;
 		case 3:
 			ID("puzzle-img").src = './data/image_C.jpg';
-			ID("option1").nextElementSibling.textContent = 'Option 7';
-			ID("option2").nextElementSibling.textContent = 'Option 8';
-			ID("option3").nextElementSibling.textContent = 'Option 9';
+			ID("option1-text").textContent = 'Option 7';
+			ID("option2-text").textContent = 'Option 8';
+			ID("option3-text").textContent = 'Option 9';
+			ID("optionEmpty").checked = true;
 			break;
 		case 4:
 			ID("puzzle-img").src = './data/image_D.jpg';
-			ID("option1").nextElementSibling.textContent = 'Option 10';
-			ID("option2").nextElementSibling.textContent = 'Option 11';
-			ID("option3").nextElementSibling.textContent = 'Option 12';
+			ID("option1-text").textContent = 'Option 10';
+			ID("option2-text").textContent = 'Option 11';
+			ID("option3-text").textContent = 'Option 12';
+			ID("optionEmpty").checked = true;
 			ID("next-btn").disabled = false;
 			ID("finish-btn").style.display = 'none';
 			break;
 		case 5:
 			ID("puzzle-img").src = './data/image_E.jpg';
-			ID("option1").nextElementSibling.textContent = 'Option 13';
-			ID("option2").nextElementSibling.textContent = 'Option 14';
-			ID("option3").nextElementSibling.textContent = 'Option 15';
+			ID("option1-text").textContent = 'Option 13';
+			ID("option2-text").textContent = 'Option 14';
+			ID("option3-text").textContent = 'Option 15';
+			ID("optionEmpty").checked = true;
 			ID("next-btn").disabled = true;
 			ID("finish-btn").style.display = 'inline-block';
 			break;

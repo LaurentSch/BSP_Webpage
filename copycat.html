@@ -37,15 +37,32 @@
                             <h2 id="puzzle-number">Puzzle 1/5</h2>
                         </header>
                         <img id="puzzle-img" src="./data/image_A.jpg" alt="Puzzle A">
-                        <div id="radio-btn" class="radiobuttons">
+                        <section id="radio-btn">
+                            <label class="radiobutton" >
+                                <input type="radio" id="option1" name="option">
+                                <span class="design"></span>
+                                <span id="option1-text" class="text">Option 1</span>
+                            </label>
+                            <label class="radiobutton">
+                                <input type="radio" id="option2" name="option">
+                                <span class="design"></span>
+                                <span id="option2-text" class="text">Option 2</span>
+                            </label>
+                            <label class="radiobutton">
+                                <input type="radio" id="option3" name="option">
+                                <span class="design"></span>
+                                <span id="option3-text" class="text">Option 3</span>
+                            </label>
+                            <!--
                             <input type="radio" id="option1" name="option">
                             <label for="option1">Option 1</label><br>
                             <input type="radio" id="option2" name="option">
                             <label for="option2">Option 2</label><br>
                             <input type="radio" id="option3" name="option">
                             <label for="option3">Option 3</label><br>
+                            -->
                             <input type="radio" id="optionEmpty" name="option" checked style="display: none;">
-                        </div>
+                        </section>
                         <button id="back-btn" onclick="goBack()" style="display: none;">Back</button>
                         <button id="next-btn" onclick="goNext()">Next</button>
                         <button id="finish-btn" onclick="finishQuizz()" style="display: none;">Finish</button>
