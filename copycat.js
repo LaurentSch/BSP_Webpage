@@ -70,10 +70,6 @@ function updatePuzzle(currentPuzzle) {
 // Checks if there is a next puzzle then calls saveSolution and updatePuzzle
 function goNext() {
 	if (currentPuzzle < 5) {
-            /* Implement checking for right result
-            if (correct_button.checked) {
-                
-            }*/
 		saveSolution()
 		currentPuzzle++;
 		updatePuzzle(currentPuzzle);
@@ -121,8 +117,15 @@ function setRadio() {
 	}
 }
 
+// Checks how many of the answers are correct. (Sample implementation: 1 is always correct.)
 function evaluateScore() {
-
+	let score = 0;
+	for (const element of answers) {
+		if (element == "option1") {
+			score += 1;
+		}
+	}
+	ID("score").textContent = score.toString() + "/5";
 }
 
 function finishQuizz() {
@@ -131,6 +134,7 @@ function finishQuizz() {
   	}
     puzzle.style.display = 'none';
 	result.style.display = 'block';
+	evaluateScore();
 	// call emailPromt after 3000 miliseconds
 	setTimeout(() => {
 		console.log("Delayed for 3 second.");
