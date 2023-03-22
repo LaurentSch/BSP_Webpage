@@ -43,6 +43,10 @@
                                 <input type="radio" id="option1" name="option">
                                 <span class="design"></span>
                                 <span id="option1-text" class="text">Option 1</span>
+                                <svg width="50" height="50" class="formss form-outlined">
+                                    <circle cx="25" cy="25" r="16" stroke="#132525" stroke-width="1" fill="transparent"></circle>
+                                    <line x1="25" y1="10" x2="25" y2="40" style="stroke: rgb(19, 37, 37); stroke-width: 1px;"></line>
+                                </svg>
                             </label>
                             <label class="radiobutton">
                                 <input type="radio" id="option2" name="option">
@@ -57,7 +61,7 @@
                             <input type="radio" id="optionEmpty" name="option" checked style="display: none;">
                         </section>
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-                            <a id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</a>
+                            <button id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</button>
                             <a id="next-btn" onclick="goNext()" class="button primary">Next</button>
                             <a id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</a>
                         </div>

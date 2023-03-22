@@ -21,7 +21,7 @@ function startPuzzle() {
 function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
-			ID("puzzle-img").src = './data/image_A.jpg';
+			ID("puzzle-img").src = './data/exercise_A.jpg';
 			ID("option1-text").textContent = 'Option 1';
 			ID("option2-text").textContent = 'Option 2';
 			ID("option3-text").textContent = 'Option 3';
