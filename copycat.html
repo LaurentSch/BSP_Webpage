@@ -17,27 +17,28 @@
                 <div class="spotlight">
                     <div id="initial" class="content">
                         <header class="major">
-                            <h2>This is a study</h2>
+                            <h2 style="text-align: center; padding-right: 1px;">This is a study</h2>
                         </header>
                         
-                        <p style="margin-bottom: 0;">
-                            This is a study condtucted by the university of luxembourg. No personal data will be collected.
-                            Let's write some additional bonus text here to check how it will react to multiple lines of text. I don't think indentation makes any difference here.
-                            But we will see once we run it.
+                        <p style="margin-bottom: 10; text-align: center;">
+                            This is a study condtucted by the university of Luxembourg.
                         </p>
-                        <p>
-                            Another paragraph. Just to check for the styles. f fff ff
+                        <p style="text-align: center;">
+                            No personal data will be collected.
                         </p>
-                        <p>
-                            <button id="start-btn" onclick="startPuzzle()">Start</button>
+                        <p style="text-align: center;">
+                            <a id="start-btn" onclick="startPuzzle()" class="button primary">Start</a>
                         </p>
                     </div>
                     <div id="puzzle" class="content" style="display: none;">
                         <header class="major">
-                            <h2 id="puzzle-number">Puzzle 1/5</h2>
+                            <h2 id="puzzle-number" style="text-align: center;">Puzzle 1/5</h2>
                         </header>
-                        <img id="puzzle-img" src="./data/image_A.jpg" alt="Puzzle A">
-                        <section id="radio-btn">
+                        <hr>
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <img id="puzzle-img" src="./data/image_A.jpg" alt="Puzzle A" style="max-width: 100%; height: auto;">
+                        </div>
+                        <section id="radio-btn" class="center">
                             <label class="radiobutton" >
                                 <input type="radio" id="option1" name="option">
                                 <span class="design"></span>
@@ -53,19 +54,13 @@
                                 <span class="design"></span>
                                 <span id="option3-text" class="text">Option 3</span>
                             </label>
-                            <!--
-                            <input type="radio" id="option1" name="option">
-                            <label for="option1">Option 1</label><br>
-                            <input type="radio" id="option2" name="option">
-                            <label for="option2">Option 2</label><br>
-                            <input type="radio" id="option3" name="option">
-                            <label for="option3">Option 3</label><br>
-                            -->
                             <input type="radio" id="optionEmpty" name="option" checked style="display: none;">
                         </section>
-                        <button id="back-btn" onclick="goBack()" style="display: none;">Back</button>
-                        <button id="next-btn" onclick="goNext()">Next</button>
-                        <button id="finish-btn" onclick="finishQuizz()" style="display: none;">Finish</button>
+                        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                            <a id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</a>
+                            <a id="next-btn" onclick="goNext()" class="button primary">Next</button>
+                            <a id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</a>
+                        </div>
                     </div>
                     <div id="result" class="content" style="display: none;">
                         <header class="major">
