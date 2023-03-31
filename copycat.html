@@ -19,7 +19,9 @@
                         <header class="major">
                             <h2 style="text-align: center; padding-right: 1px;">This is a study</h2>
                         </header>
-                        
+                        <div style="display: flex; justify-content: center; align-items: center; padding: 5px;">
+                            <img src="./data/cat.jpg" alt="Puzzle A" style="max-width: 100%; height: auto;">
+                        </div>
                         <p style="margin-bottom: 10; text-align: center;">
                             This is a study condtucted by the university of Luxembourg.
                         </p>
@@ -30,22 +32,27 @@
                             <button id="start-btn" onclick="startPuzzle()" class="button primary">Start</button>
                         </p>
                     </div>
+                    
                     <div id="puzzle" class="content" style="display: none;">
                         <header class="major">
                             <h2 id="puzzle-number" style="text-align: center;">Puzzle 1/5</h2>
                         </header>
                         <hr>
-                        <div style="display: flex; justify-content: center; align-items: center;">
-                            <img id="puzzle-img" src="./data/image_A.jpg" alt="Puzzle A" style="max-width: 100%; height: auto;">
+                        <div style="display: flex; justify-content: center; align-items: center; padding: 5px;">
+                            <img id="puzzle-img" src="./data/hospital.png" alt="Puzzle A" style="max-width: 100%; height: auto;">
+                        </div>
+                        <div style="text-align:center;">
+                             <p id="puzzle-text" type="text" style="border-radius: 10px; border: 1px solid gray; padding: 5px;">
+                                puzzle
+                            </p>
+                            <label for="answer"><b>Answer:</b></label>
+                            <input type="text" id="answer">
                         </div>
                         <section id="radio-btn" class="center">
                             <label class="radiobutton" >
                                 <input type="radio" id="option1" name="option">
                                 <span class="design"></span>
                                 <span id="option1-text" class="text">Option 1</span>
-                                <svg width="50" height="50" class="formss form-outlined">
-                                    <circle cx="25" cy="25" r="16" stroke="#132525" stroke-width="1" fill="transparent"></circle>
-                                    <line x1="25" y1="10" x2="25" y2="40" style="stroke: rgb(19, 37, 37); stroke-width: 1px;"></line>
                                 </svg>
                             </label>
                             <label class="radiobutton">
@@ -63,7 +70,7 @@
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                             <button id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</button>
                             <button id="next-btn" onclick="goNext()" class="button primary">Next</button>
-                            <button id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</>
+                            <button id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</in>
                         </div>
                     </div>
                     <dialog class="modal" id="finish-modal">
@@ -92,9 +99,9 @@
                             <form class="form" method="dialog">
                                 <label>Your email: <input type="text"></label>
                                 <hr>
-                                <button class="button.submit" type="submit">Sign up for the weekly exercises</button>
+                                <button class="button.submit" type="submit" onclick="submitEmail()">Sign up for the weekly exercises</button>
                             </form>
-                            <button class="button.sumbit" id="close-modal">No I don't want to train my brain</button>
+                            <button class="button.sumbit" id="close-modal" >No I don't want to train my brain</button>
                         </div>
                         
                     </dialog>

@@ -1,3 +1,4 @@
+// const FuzzySet = require('fuzzyset')
 // to circumvent calling 'document.getElementById('id');' a million times
 function ID(elementId) {
     return document.getElementById(elementId);
@@ -5,10 +6,28 @@ function ID(elementId) {
 
 // Tracks what puzzle the user is on
 let currentPuzzle = 1;
+// array with the questions
+let questions = new Array(4)
+questions[0] = "A father and son have a car accident and are both badly hurt. They are both taken to separate hospitals. When the boy is taken in for an operation, the surgeon (doctor) says 'I can not do the surgery because this is my son'. \n How is this possible?";
+questions[1] = "What goes on four legs in the morning, two legs in the afternoon, and three legs in the evening?";
+questions[2] = "What always runs but never walks. \nOften murmurs, never talks. \nHas a bed but never sleeps. \nAn open mouth that never eats?";
+questions[3] = "I'm a thief that cannot be caught, \nStealing moments that cannot be bought. \nI'm the reason for the rising sun, \nAnd the setting of the day when it's done. \nWhat am I?"
+// Correct answers nested array
+let solutions = new Array(4);
+solutions[0] = new Array("mom", "mother", "mum");
+solutions[1] = new Array("human", "person", "man");
+solutions[2] = new Array("river", "stream");
+solutions[3] = new Array("time")
 // save the users answers
-let answers = new Array(5).fill(null)
-// Correct answers
-let solutions = new Array("option1", "option1", "option1", "option1", "option1")
+let answers = new Array(4).fill(null);
+
+// use FuzzySet to account for missspelling of the words
+// let solutions_fuzzy = new Array(5);
+// solutions_fuzzy[0] = solutions[0].map(answer => FuzzySet([answer]));
+// solutions_fuzzy[1] = solutions[1].map(answer => FuzzySet([answer]));
+// solutions_fuzzy[2] = solutions[2].map(answer => FuzzySet([answer]));
+
+
 
 // Hides the initial view on button click and displays the puzzle view.
 function startPuzzle() {
@@ -21,44 +40,31 @@ function startPuzzle() {
 function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
-			ID("puzzle-img").src = './data/exercise_A.jpg';
-			ID("option1-text").textContent = 'Option 1';
-			ID("option2-text").textContent = 'Option 2';
-			ID("option3-text").textContent = 'Option 3';
-			ID("optionEmpty").checked = true;
-            ID("back-btn").disabled = true;
+			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem. Puzzle 1/5:';
+			ID("puzzle-img").src = './data/hospital.png';
+			ID("puzzle-text").innerText = questions[0];
+			ID("answer").value = answers[currentPuzzle]
+			ID("radio-btn").style.display = 'none';
+			ID("back-btn").disabled = true;
 			break;
 		case 2:
-			ID("puzzle-img").src = './data/image_B.jpg';
-			ID("option1-text").textContent = 'Option 4';
-			ID("option2-text").textContent = 'Option 5';
-			ID("option3-text").textContent = 'Option 6';
-			ID("optionEmpty").checked = true;
+			ID("puzzle-number").innerText  = 'El classico. Puzzle 2/5:';
+			ID("puzzle-img").src = './data/sphinx.png';
+			ID("puzzle-text").innerText = questions[1];
 			ID("back-btn").style.display = 'inline-block';
             ID("back-btn").disabled = false;
 			break;
 		case 3:
-			ID("puzzle-img").src = './data/image_C.jpg';
-			ID("option1-text").textContent = 'Option 7';
-			ID("option2-text").textContent = 'Option 8';
-			ID("option3-text").textContent = 'Option 9';
-			ID("optionEmpty").checked = true;
-			break;
-		case 4:
-			ID("puzzle-img").src = './data/image_D.jpg';
-			ID("option1-text").textContent = 'Option 10';
-			ID("option2-text").textContent = 'Option 11';
-			ID("option3-text").textContent = 'Option 12';
-			ID("optionEmpty").checked = true;
+			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 3/5:';
+			ID("puzzle-img").src = './data/nguruvilu.png';
+			ID("puzzle-text").innerText = questions[2];
 			ID("next-btn").disabled = false;
 			ID("finish-btn").style.display = 'none';
 			break;
-		case 5:
-			ID("puzzle-img").src = './data/image_E.jpg';
-			ID("option1-text").textContent = 'Option 13';
-			ID("option2-text").textContent = 'Option 14';
-			ID("option3-text").textContent = 'Option 15';
-			ID("optionEmpty").checked = true;
+		case 4:
+			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 4/5:';
+			ID("puzzle-img").src = './data/fox_thief.png';
+			ID("puzzle-text").innerText = questions[3];
 			ID("next-btn").disabled = true;
 			ID("finish-btn").style.display = 'inline-block';
 			break;
@@ -73,8 +79,12 @@ function goNext() {
 		saveSolution()
 		currentPuzzle++;
 		updatePuzzle(currentPuzzle);
-		setRadio()
-        ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
+		if (currentPuzzle > 3) {
+			setRadio()
+		} else {
+			ID("answer").value = answers[currentPuzzle]
+		}
+        // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
 	}
     //console.log("aiogfuhapiefgba8izwegf8iewgfaiwezugfapö<iewzfgbapöiugfpöaeiugf")
 }
@@ -85,17 +95,28 @@ function goBack() {
 		saveSolution()
         currentPuzzle--;
         updatePuzzle(currentPuzzle);
-		setRadio()
+		if (currentPuzzle > 3) {
+			setRadio();
+		} else {
+			ID("answer").value = answers[currentPuzzle]
+		}
+		
         //update header
-        ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
+        // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
     }
 }
 
 // Saves the selected radio button into the solution array by its id.
 function saveSolution() {
-	const selectedOption = document.querySelector('input[name="option"]:checked').id;
-	console.log(selectedOption);
-	answers[currentPuzzle] = selectedOption;
+	// differentiate between pizzles with text form solution and radio button
+	if (currentPuzzle <= 3) {
+		answers[currentPuzzle] = ID("answer").value
+	} else {
+		const selectedOption = document.querySelector('input[name="option"]:checked').id;
+		console.log(selectedOption);
+		answers[currentPuzzle] = selectedOption;
+	}
+	
 }
 
 // sets the radio button to the users response
@@ -117,21 +138,34 @@ function setRadio() {
 	}
 }
 
+
 // Checks how many of the answers are correct. (Sample implementation: 1 is always correct.)
 function evaluateScore() {
 	let score = 0;
-	for (const element of answers) {
-		if (element == "option1") {
-			score += 1;
+	for (let i = 0; i < solutions.length; i++) {
+		let answer_prep = prepare_answer(answers[i]);
+		for (let j = 0; j < answer_prep.length; j++) {
+			for (let m = 0; m < solutions[i].length; m++) {
+				if (answer_prep[j] == solutions[i][m]) {
+					score++;
+				}
+			}
 		}
 	}
-	ID("score").textContent = score.toString() + "/5";
+	ID("score").innerText = score.toString() + "/5";
+}
+
+// split the user input into a list of words that were seperated by a space and put everything to lowercase
+function prepare_answer(answer) {
+	if (answer == null) {
+		return new Array()
+	}
+	prep =  answer.toLowerCase();
+	prep_array = prep.split(" ");
+	return prep_array
 }
 
 function finishQuizz() {
-	// if (!confirm("Are you sure you want to submit?")) { // != true) {
-    // 	return;
-  	// }
 	const finish_modal = ID("finish-modal");
 	finish_modal.showModal();
 	ID("cancel").addEventListener("click", () => {
@@ -146,7 +180,7 @@ function finishQuizz() {
 		setTimeout(() => {
 			console.log("Delayed for 3 second.");
 			emailPromt()
-		}, 3000);
+		}, 6000);
 	});
 }
 
@@ -159,4 +193,8 @@ function emailPromt() {
 	ID("close-modal").addEventListener("click", () => {
 		modal.close();
 	});
+}
+
+function submitEmail() {
+	console.log("Test")
 }
