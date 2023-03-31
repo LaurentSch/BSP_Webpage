@@ -27,7 +27,7 @@
                             No personal data will be collected.
                         </p>
                         <p style="text-align: center;">
-                            <a id="start-btn" onclick="startPuzzle()" class="button primary">Start</a>
+                            <button id="start-btn" onclick="startPuzzle()" class="button primary">Start</button>
                         </p>
                     </div>
                     <div id="puzzle" class="content" style="display: none;">
@@ -62,10 +62,20 @@
                         </section>
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                             <button id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</button>
-                            <a id="next-btn" onclick="goNext()" class="button primary">Next</button>
-                            <a id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</a>
+                            <button id="next-btn" onclick="goNext()" class="button primary">Next</button>
+                            <button id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</>
                         </div>
                     </div>
+                    <dialog class="modal" id="finish-modal">
+                        <div class="center">
+                            <h2>Are you sure you want to submit?</h2>
+                            <p>Warning! After clicking the 'Finish' button, the quizz is over and you can't go back.</p>
+                            <div>
+                                <button class="submit" id="cancel">Cancel</button>
+                                <button class="button.submit" id="finish-quizz">Finish Quizz</button>
+                            </div>
+                        </div>     
+                    </dialog>
                     <div id="result" class="content" style="display: none;">
                         <header class="major">
                             <h2>Your result</h2>
@@ -75,6 +85,19 @@
                             Your score is = n/5
                         </p>
                     </div>
+                    <dialog class="modal" id="modal">
+                        <div class="center">
+                            <h2>Subscribe for more</h2>
+                            <p>Subscribe to our mailing list to get send more riddles and brainteasers every week</p>
+                            <form class="form" method="dialog">
+                                <label>Your email: <input type="text"></label>
+                                <hr>
+                                <button class="button.submit" type="submit">Sign up for the weekly exercises</button>
+                            </form>
+                            <button class="button.sumbit" id="close-modal">No I don't want to train my brain</button>
+                        </div>
+                        
+                    </dialog>
                 </div>  
             </section>
         </div>

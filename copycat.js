@@ -129,22 +129,34 @@ function evaluateScore() {
 }
 
 function finishQuizz() {
-	if (!confirm("Are you sure you want to submit?")) { // != true) {
-    	return;
-  	}
-    puzzle.style.display = 'none';
-	result.style.display = 'block';
-	evaluateScore();
-	// call emailPromt after 3000 miliseconds
-	setTimeout(() => {
-		console.log("Delayed for 3 second.");
-		emailPromt()
-	}, 3000);
-
+	// if (!confirm("Are you sure you want to submit?")) { // != true) {
+    // 	return;
+  	// }
+	const finish_modal = ID("finish-modal");
+	finish_modal.showModal();
+	ID("cancel").addEventListener("click", () => {
+		finish_modal.close();
+	});
+	ID("finish-quizz").addEventListener("click", () => {
+		finish_modal.close();
+		puzzle.style.display = 'none';
+		result.style.display = 'block';
+		evaluateScore();
+		// call emailPromt after 3000 miliseconds
+		setTimeout(() => {
+			console.log("Delayed for 3 second.");
+			emailPromt()
+		}, 3000);
+	});
 }
 
 function emailPromt() {
 	// result.style.display = 'none';
 	// emailPrompt.style.display = 'block'
-	prompt("Enter your email to receive further Quizzes.", "example@email.com");
+	//prompt("Enter your email to receive further Quizzes.", "example@email.com");
+	const modal = ID('modal')
+	modal.showModal();
+	ID("close-modal").addEventListener("click", () => {
+		modal.close();
+	});
 }

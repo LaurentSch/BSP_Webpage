@@ -469,12 +469,25 @@ input:active+.design::after {
 
 /* added by me */
 
-.center {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
+	.center {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	}
+
+	.modal {
+		padding: 1em;
+		max-width: 50ch;
+		border: 0;
+  		box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+	}
+	.modal > * {
+		margin: 0 0 0.5rem 0;
+	}
+	.modal::backdrop {
+		background: rgb(0 0 0 / 0.4);
+	}
 
 
 
@@ -497,9 +510,9 @@ input:active+.design::after {
 		border: 0;
 		cursor: pointer;
 		display: inline-block;
-		font-weight: 300;
-		height: 2.75em;
-		line-height: 2.75em;
+		font-weight: 900;
+		height: 4em;
+		line-height: 4em;
 		min-width: 9.25em;
 		padding: 0 1.5em;
 		text-align: center;
@@ -577,9 +590,9 @@ input:active+.design::after {
 	input[type="button"],
 	button,
 	.button {
-		background-color: transparent;
+		background-color: #8cc9f0;
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-		color: #e96060 !important;
+		color: #ffffff !important;
 	}
 
 		input[type="submit"]:hover,
@@ -587,7 +600,7 @@ input:active+.design::after {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: rgba(255, 255, 255, 0.075);
+			background-color: #8ce1f0;
 		}
 
 		input[type="submit"]:active,
