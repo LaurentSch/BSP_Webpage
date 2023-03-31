@@ -40,7 +40,7 @@ function startPuzzle() {
 function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
-			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem. Puzzle 1/5:';
+			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem. Puzzle 1/4:';
 			ID("puzzle-img").src = './data/hospital.png';
 			ID("puzzle-text").innerText = questions[0];
 			ID("answer").value = answers[currentPuzzle]
@@ -48,21 +48,21 @@ function updatePuzzle(currentPuzzle) {
 			ID("back-btn").disabled = true;
 			break;
 		case 2:
-			ID("puzzle-number").innerText  = 'El classico. Puzzle 2/5:';
+			ID("puzzle-number").innerText = 'El classico. Puzzle 2/4:';
 			ID("puzzle-img").src = './data/sphinx.png';
 			ID("puzzle-text").innerText = questions[1];
 			ID("back-btn").style.display = 'inline-block';
             ID("back-btn").disabled = false;
 			break;
 		case 3:
-			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 3/5:';
+			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 3/4:';
 			ID("puzzle-img").src = './data/nguruvilu.png';
 			ID("puzzle-text").innerText = questions[2];
 			ID("next-btn").disabled = false;
 			ID("finish-btn").style.display = 'none';
 			break;
 		case 4:
-			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 4/5:';
+			ID("puzzle-number").innerText  = 'Almost there. Puzzle 4/4:';
 			ID("puzzle-img").src = './data/fox_thief.png';
 			ID("puzzle-text").innerText = questions[3];
 			ID("next-btn").disabled = true;
@@ -79,11 +79,7 @@ function goNext() {
 		saveSolution()
 		currentPuzzle++;
 		updatePuzzle(currentPuzzle);
-		if (currentPuzzle > 3) {
-			setRadio()
-		} else {
-			ID("answer").value = answers[currentPuzzle]
-		}
+		ID("answer").value = answers[currentPuzzle - 1]
         // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
 	}
     //console.log("aiogfuhapiefgba8izwegf8iewgfaiwezugfapö<iewzfgbapöiugfpöaeiugf")
@@ -95,11 +91,7 @@ function goBack() {
 		saveSolution()
         currentPuzzle--;
         updatePuzzle(currentPuzzle);
-		if (currentPuzzle > 3) {
-			setRadio();
-		} else {
-			ID("answer").value = answers[currentPuzzle]
-		}
+		ID("answer").value = answers[currentPuzzle - 1]
 		
         //update header
         // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
@@ -108,14 +100,7 @@ function goBack() {
 
 // Saves the selected radio button into the solution array by its id.
 function saveSolution() {
-	// differentiate between pizzles with text form solution and radio button
-	if (currentPuzzle <= 3) {
-		answers[currentPuzzle] = ID("answer").value
-	} else {
-		const selectedOption = document.querySelector('input[name="option"]:checked').id;
-		console.log(selectedOption);
-		answers[currentPuzzle] = selectedOption;
-	}
+	answers[currentPuzzle - 1] = ID("answer").value
 	
 }
 
@@ -146,22 +131,24 @@ function evaluateScore() {
 		let answer_prep = prepare_answer(answers[i]);
 		for (let j = 0; j < answer_prep.length; j++) {
 			for (let m = 0; m < solutions[i].length; m++) {
+				console.log("Check if answer_prep[j]" + answer_prep[j] + " == " + solutions[i][m]);
 				if (answer_prep[j] == solutions[i][m]) {
 					score++;
 				}
 			}
 		}
 	}
-	ID("score").innerText = score.toString() + "/5";
+	ID("score").innerText = score.toString() + "/4";
 }
 
 // split the user input into a list of words that were seperated by a space and put everything to lowercase
 function prepare_answer(answer) {
-	if (answer == null) {
+	if (answer == null) {	
 		return new Array()
 	}
-	prep =  answer.toLowerCase();
-	prep_array = prep.split(" ");
+	console.log(answer)
+	let prep = answer.toLowerCase();
+	let prep_array = prep.split(" ");
 	return prep_array
 }
 
@@ -173,12 +160,13 @@ function finishQuizz() {
 	});
 	ID("finish-quizz").addEventListener("click", () => {
 		finish_modal.close();
+		saveSolution();
 		puzzle.style.display = 'none';
 		result.style.display = 'block';
 		evaluateScore();
 		// call emailPromt after 3000 miliseconds
 		setTimeout(() => {
-			console.log("Delayed for 3 second.");
+			console.log("Delayed for 6 second.");
 			emailPromt()
 		}, 6000);
 	});
