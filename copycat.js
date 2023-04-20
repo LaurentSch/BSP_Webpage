@@ -138,7 +138,7 @@ function evaluateScore() {
 			}
 		}
 	}
-	ID("score").innerText = score.toString() + "/4";
+	ID("score").innerText = "Your Result is: " + score.toString() + "/4";
 }
 
 // split the user input into a list of words that were seperated by a space and put everything to lowercase
