@@ -37,7 +37,6 @@ function startPuzzle() {
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
-	console.log("Timer function is about to be called")
 	updateTimer();
     countdownTimer = setInterval(updateTimer, 1000);
 }
@@ -50,7 +49,6 @@ function updatePuzzle(currentPuzzle) {
 			ID("puzzle-img").src = './data/hospital.png';
 			ID("puzzle-text").innerText = questions[0];
 			ID("answer").value = answers[currentPuzzle]
-			ID("radio-btn").style.display = 'none';
 			ID("back-btn").disabled = true;
 			break;
 		case 2:
@@ -198,7 +196,6 @@ function submitEmail() {
 }
 
 function updateTimer() {
-	console.log("Inside of timer function")
 	// Calculate the minutes and seconds remaining
 	const minutes = Math.floor(timeLeft / 60);
 	const seconds = timeLeft % 60;
