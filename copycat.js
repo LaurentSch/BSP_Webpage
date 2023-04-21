@@ -1,3 +1,4 @@
+//import "smtp";
 // const FuzzySet = require('fuzzyset')
 // to circumvent calling 'document.getElementById('id');' a million times
 function ID(elementId) {
@@ -23,6 +24,10 @@ let answers = new Array(4).fill(null);
 // set timer in seconds
 let timeLeft = 300;
 let countdownTimer;
+// save user information
+// let email = "None";
+let prolificId = "None"
+
 
 // use FuzzySet to account for missspelling of the words
 // let solutions_fuzzy = new Array(5);
@@ -184,15 +189,38 @@ function emailPromt() {
 	// result.style.display = 'none';
 	// emailPrompt.style.display = 'block'
 	//prompt("Enter your email to receive further Quizzes.", "example@email.com");
-	const modal = ID('modal')
+	const modal = ID('modal');
 	modal.showModal();
 	ID("close-modal").addEventListener("click", () => {
 		modal.close();
+
+		smtpCode("None");
 	});
 }
 
 function submitEmail() {
-	console.log("Test")
+	console.log("Test");
+	let email = ID("email").value;
+	smtpCode(email);
+	const modal = ID('modal');
+	modal.close();
+}
+
+// Takes a string with the users email and sends an email with these fields to Host
+function smtpCode(email) {
+	smpt.Email.send({
+		Host : "smtp.gmail.com",
+		Username : "translucent.traveler@gmail.com",
+		Password : "XXX",
+		To : 'laurent.schmidt.001@student.uni.lu',
+		From : "confirmshame@BSP.com",
+		Subject : "Confirmshame Prompt submission",
+		Body : "Time spend," + (300 - timeLeft) + "\n"
+			+ "Email," + email + "\n"
+			+ "prolific id," + prolificId + "\n"
+	}).then(
+  		console.log("The email was sent")
+	);
 }
 
 function updateTimer() {

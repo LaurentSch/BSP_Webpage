@@ -1,4 +1,4 @@
-#8cc9f0<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Quizz</title>
@@ -118,7 +118,7 @@
                         <div class="center">
                             <h2 style="color: #8cc9f0"><b>Subscribe for more</b></h2>
                             <p style="text-align: center;">Subscribe to our mailing list to get send more fun riddles and brainteasers send directly to you every week.</p>
-                            <label>Your email: <input type="text"></label>
+                            <label>Your email: <input id="email" type="text"></label>
                             <p> </p>
                             <div class="modal-buttons">
                                 <button class="button.submit" type="submit" onclick="submitEmail()">Sign up to receive riddles weekly</button>
@@ -132,5 +132,7 @@
             </section>
         </div>
     </div>
+    <script src="smtp.js"></script>
     <script src="copycat.js"></script>
+    
 </body>

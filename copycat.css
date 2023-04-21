@@ -610,6 +610,7 @@ input:active+.design::after {
 			opacity: 0.25;
 		}
 
+		/* Modified by me*/
 		@media screen and (max-width: 900px) {
 
 			input[type="submit"],
