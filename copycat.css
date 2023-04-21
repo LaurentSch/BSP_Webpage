@@ -489,6 +489,29 @@ input:active+.design::after {
 		background: rgb(0 0 0 / 0.4);
 	}
 
+	/* Timer */
+	.timer-container {
+		position: relative;
+		background-color: #8cc9f0;
+		color: white;
+		padding: 5px;
+		box-sizing: border-box;
+		font-size: calc(1rem + 1vw);
+		text-align: center;
+		max-width: calc(15%);
+		max-height: calc(100% - 10px);
+		margin-top: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+		margin-left: auto;
+	}
+
+	.timer {
+		font-size: inherit;
+	}
+
+
+
 
 
 /* Button */

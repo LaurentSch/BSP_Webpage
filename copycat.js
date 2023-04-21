@@ -20,6 +20,9 @@ solutions[2] = new Array("river", "stream");
 solutions[3] = new Array("time")
 // save the users answers
 let answers = new Array(4).fill(null);
+// set timer in seconds
+let timeLeft = 300;
+let countdownTimer;
 
 // use FuzzySet to account for missspelling of the words
 // let solutions_fuzzy = new Array(5);
@@ -34,6 +37,9 @@ function startPuzzle() {
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
+	console.log("Timer function is about to be called")
+	updateTimer();
+    countdownTimer = setInterval(updateTimer, 1000);
 }
 
 // changes the view based on the puzzle number.
@@ -160,16 +166,20 @@ function finishQuizz() {
 	});
 	ID("finish-quizz").addEventListener("click", () => {
 		finish_modal.close();
-		saveSolution();
-		puzzle.style.display = 'none';
-		result.style.display = 'block';
-		evaluateScore();
-		// call emailPromt after 3000 miliseconds
-		setTimeout(() => {
-			console.log("Delayed for 6 second.");
-			emailPromt()
-		}, 6000);
+		finalPageSetup();
 	});
+}
+
+function finalPageSetup() {
+	saveSolution();
+	puzzle.style.display = 'none';
+	result.style.display = 'block';
+	evaluateScore();
+	// call emailPromt after 3000 miliseconds
+	setTimeout(() => {
+		console.log("Delayed for 6 second.");
+		emailPromt()
+	}, 6000);
 }
 
 function emailPromt() {
@@ -185,4 +195,26 @@ function emailPromt() {
 
 function submitEmail() {
 	console.log("Test")
+}
+
+function updateTimer() {
+	console.log("Inside of timer function")
+	// Calculate the minutes and seconds remaining
+	const minutes = Math.floor(timeLeft / 60);
+	const seconds = timeLeft % 60;
+
+	// Format the minutes and seconds with leading zeros
+	const formattedMinutes = minutes.toString().padStart(2, '0');
+	const formattedSeconds = seconds.toString().padStart(2, '0');
+
+	// Update the timer text
+	ID("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+
+	// Check if the countdown has ended
+	if (timeLeft === 0) {
+		clearInterval(countdownTimer);
+		finalPageSetup();
+	} else {
+		timeLeft--;
+	}
 }
