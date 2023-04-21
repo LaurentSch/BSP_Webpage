@@ -9,8 +9,8 @@ let currentPuzzle = 1;
 // array with the questions
 let questions = new Array(4)
 questions[0] = "A father and son have a car accident and are both badly hurt. They are both taken to separate hospitals. When the boy is taken in for an operation, the surgeon (doctor) says 'I can not do the surgery because this is my son'. \n How is this possible?";
-questions[1] = "What goes on four legs in the morning, two legs in the afternoon, and three legs in the evening?";
-questions[2] = "What always runs but never walks. \nOften murmurs, never talks. \nHas a bed but never sleeps. \nAn open mouth that never eats?";
+questions[1] = "A classic greek riddle: \nWhat goes on four legs in the morning, \ntwo legs in the afternoon, and \nthree legs in the evening?";
+questions[2] = "What always runs but never walks. \nOften murmurs, never talks. \nHas a bed but never sleeps. \nAn open mouth that never eats. \nWhat is it?";
 questions[3] = "I'm a thief that cannot be caught, \nStealing moments that cannot be bought. \nI'm the reason for the rising sun, \nAnd the setting of the day when it's done. \nWhat am I?"
 // Correct answers nested array
 let solutions = new Array(4);
@@ -45,28 +45,28 @@ function startPuzzle() {
 function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
-			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem. Puzzle 1/4:';
+			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem.\n Puzzle 1/4:';
 			ID("puzzle-img").src = './data/hospital.png';
 			ID("puzzle-text").innerText = questions[0];
 			ID("answer").value = answers[currentPuzzle]
 			ID("back-btn").disabled = true;
 			break;
 		case 2:
-			ID("puzzle-number").innerText = 'El classico. Puzzle 2/4:';
+			ID("puzzle-number").innerText = 'El classico.\n Puzzle 2/4:';
 			ID("puzzle-img").src = './data/sphinx.png';
 			ID("puzzle-text").innerText = questions[1];
 			ID("back-btn").style.display = 'inline-block';
             ID("back-btn").disabled = false;
 			break;
 		case 3:
-			ID("puzzle-number").innerText  = 'A bit more difficult. Puzzle 3/4:';
+			ID("puzzle-number").innerText  = 'A bit more difficult.\n Puzzle 3/4:';
 			ID("puzzle-img").src = './data/nguruvilu.png';
 			ID("puzzle-text").innerText = questions[2];
 			ID("next-btn").disabled = false;
 			ID("finish-btn").style.display = 'none';
 			break;
 		case 4:
-			ID("puzzle-number").innerText  = 'Almost there. Puzzle 4/4:';
+			ID("puzzle-number").innerText  = 'Almost there.\n Puzzle 4/4:';
 			ID("puzzle-img").src = './data/fox_thief.png';
 			ID("puzzle-text").innerText = questions[3];
 			ID("next-btn").disabled = true;
