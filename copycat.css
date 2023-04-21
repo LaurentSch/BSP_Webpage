@@ -478,7 +478,7 @@ input:active+.design::after {
 
 	.modal {
 		padding: 1em;
-		max-width: 50ch;
+		max-width: 55ch;
 		border: 0;
   		box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
 	}
@@ -486,15 +486,29 @@ input:active+.design::after {
 		margin: 0 0 0.5rem 0;
 	}
 	.modal::backdrop {
-		background: rgb(0 0 0 / 0.4);
+		background: rgba(43, 77, 80, 0.4);
 	}
 
+	.modal-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	}
+
+	@media screen and (max-width: 600px) {
+		.modal-buttons {
+			flex-direction: column;
+		}
+	}
+	
 	/* Timer */
 	.timer-container {
 		position: relative;
 		background-color: #8cc9f0;
 		color: white;
 		padding: 5px;
+		border-radius: 8px;
 		box-sizing: border-box;
 		font-size: calc(1rem + 1vw);
 		text-align: center;
@@ -596,7 +610,7 @@ input:active+.design::after {
 			opacity: 0.25;
 		}
 
-		@media screen and (max-width: 736px) {
+		@media screen and (max-width: 900px) {
 
 			input[type="submit"],
 			input[type="reset"],
@@ -604,6 +618,9 @@ input:active+.design::after {
 			button,
 			.button {
 				min-width: 0;
+				font-size: 12px;
+    			padding: 0px 2ex 7ex;
+				height: 3em;
 			}
 
 		}
