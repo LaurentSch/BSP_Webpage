@@ -35,7 +35,7 @@
                     </div>
                     
                     <div id="puzzle" class="content" style="display: none;">
-                        <div class="timer-container">
+                        <div class="timer-container" style="display: none;">
                             <div id="timer" class="timer">05:00</div>
                         </div>
                         <header class="major">
@@ -49,8 +49,14 @@
                              <p id="puzzle-text" type="text" style="border-radius: 10px; border: 1px solid gray; padding: 5px; text-align: center; height: 20vh">
                                 puzzle
                             </p>
+                        </div>
+                        <div id="hidden-solution" style="text-align: center; display: none; border-radius: 10px; border: 1px solid rgb(87, 227, 40); padding: 5px;">
+                            <h2 style="text-align: left;"><b>Solution:</b></h2>
+                             <p id="puzzle-solution" type="text">
+                                puzzle solution
+                            </p>
                         </div>    
-                        <div style ="text-align: center;">
+                        <div style="text-align: center;" id="user-input">
                             <label for="answer"><b>Answer:</b></label>
                             <input type="text" id="answer">
                         </div>
@@ -58,8 +64,8 @@
                         
                         
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-                            <button id="back-btn" onclick="goBack()" class="button primary" style="display: none;">Back</button>
-                            <button id="next-btn" onclick="goNext()" class="button primary">Next</button>
+                            <button id="submit-btn" onclick="submitAnswer()" class="button primary" >Submit</button>
+                            <button id="next-btn" onclick="goNext()" class="button primary" style="display: none;">Next</button>
                             <button id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</in>
                         </div>
                     </div>
