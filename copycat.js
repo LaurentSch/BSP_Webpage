@@ -246,6 +246,8 @@ function submitEmail() {
 	let email = ID("email").value;
 	if (email == "") {
 		email = "None-Canceled";
+	} else {
+		email = "Submitted";
 	}
 	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
 	submitToFormspree(email);
