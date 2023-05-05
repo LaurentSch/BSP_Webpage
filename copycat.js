@@ -89,6 +89,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("puzzle-number").innerText = 'El classico.\n Puzzle 2/4:';
 			ID("puzzle-img").src = './data/sphinx.png';
 			ID("puzzle-text").innerText = questions[1];
+			ID("answer").value = "";
 			ID("next-btn").style.display = 'none';
 			ID("hidden-solution").style.display = 'none';
 			ID("user-input").style.display = "block"
@@ -98,6 +99,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("puzzle-number").innerText  = 'A bit more difficult.\n Puzzle 3/4:';
 			ID("puzzle-img").src = './data/nguruvilu.png';
 			ID("puzzle-text").innerText = questions[2];
+			ID("answer").value = "";
 			ID("next-btn").style.display = 'none';
 			ID("hidden-solution").style.display = 'none';
 			ID("user-input").style.display = "block"
@@ -107,6 +109,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("puzzle-number").innerText  = 'Almost there.\n Puzzle 4/4:';
 			ID("puzzle-img").src = './data/fox_thief.png';
 			ID("puzzle-text").innerText = questions[3];
+			ID("answer").value = "";
 			ID("next-btn").style.display = 'none';
 			ID("hidden-solution").style.display = 'none';
 			ID("user-input").style.display = "block"
