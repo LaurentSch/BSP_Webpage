@@ -66,7 +66,7 @@
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
                             <button id="submit-btn" onclick="submitAnswer()" class="button primary" >Submit</button>
                             <button id="next-btn" onclick="goNext()" class="button primary" style="display: none;">Next</button>
-                            <button id="finish-btn" onclick="finishQuizz()" class="button primary" style="display: none;">Finish</in>
+                            <button id="finish-btn" onclick="emailPromt()" class="button primary" style="display: none;">Finish</in>
                         </div>
                     </div>
                     <dialog class="modal" id="finish-modal">
@@ -79,58 +79,26 @@
                             </div>
                         </div>     
                     </dialog>
-                    <div id="result" class="content" style="display: none;">
-                        <header class="major">
-                            <h1>Solutions</h1>
-                        </header>
-                        <h2 id="score"><b>Your result</b></h2>
-                        <hr>
-                        <p id="riddle-answer01" style="margin-bottom: 0;">
-                            <h3><b>Solution of the first riddle: The doctor is the mother</b></h3> <br>
-                            <b>Explanation:</b> The difficulty in this riddle was that for some non-english speakers (like german and luxembourgish people), there is a masculine and feminine form of doctor.
-                            And the masculine form sounds very close to 'doctor'. So it is easy to assume that the doctor has to be masculine.
-                        </p>
-                        <hr>
-                        <p id="riddle-answer02" style="margin-bottom: 0;">
-                            <h3><b>Solution of the second riddle: A human</b></h3>
-                            <b>Explanation:</b> In this riddle the time of the day is a metaphor for the stages of life in a human. In greek myth, a sphinx asked Oedipus this riddle.
-                            He answered the riddle correctly: “The answer is `man`. A man crawls on all fours in the morning of his life, he walks on two feet in the midday of his life, and he uses a cane for extra support when he is old.”
-                            <br>
-                            Note that, while inspired from it, the greek sphinx is not the same as the egyptian sphinx.
-                        </p>
-                        <hr>
-                        <p id="riddle-answer03" style="margin-bottom: 0;">
-                            <h3><b>Solution of the third riddle: A river</b></h3> <br>
-                            <b>Explanation:</b> The riddle uses terminology related to rivers: <br>
-                            <i>What always runs but never walks.</i>: A river is constantly flowing, or running, but it never walks since it is a body of water. <br>
-                            <i>Often murmurs, never talks.</i>: The sound of a river is often described as a murmur, as it makes a continuous low, soft sound.
-                                However, a river doesn't talk because it doesn't have a voice or the ability to communicate. <br>
-                            <i>Has a bed but never sleeps.</i>: A river has a bed, which is the channel it flows through. However, a river doesn't sleep because it's always flowing. <br>
-                            <i>An open mouth that never eats?</i>: A river has a mouth, which is the place where it empties into a larger body of water, such as a lake or ocean.
-                                This mouth is typically wide open, but a river never eats because it's not alive and doesn't have a digestive system.
-
-                        </p>
-                        <hr>
-                        <p id="riddle-answer04" style="margin-bottom: 0;">
-                            <h3><b>Solution of the last riddle: Time</b></h3> <br>
-                            <b>Explanation:</b> Line by line: <br>
-                            <i>I'm a thief that cannot be caught,</i>: This line suggests that the answer is something that takes something away, but is not tangible.<br>
-                            <i>Stealing moments that cannot be bought.</i>: Since it is impossible to regain lost time.<br>
-                            <i>I'm the reason for the rising sun,</i>: This line suggests that the answer is something that is closely related to the passage of time, and specifically to the cycle of day and night.<br>
-                            <i>And the setting of the day when it's done.</i>: This line completes the previous line and reinforces the idea that the answer is related to the passage of time and the cycle of day and night.<br>
-                        </p>
-                    </div>
-                    <dialog class="modal" id="modal">
-                        <div class="center">
+                    <dialog class="modal" id="email-prompt">
+                        <div id="modal-phase1" class="center">
+                            <p id="modal-score" style="align-items: left;"><b>Result:</b>0/4</p>
+                            <h2 style="color: #8cc9f0"><b>Subscribe for more</b></h2>
+                            <p style="text-align: center;">Subscribe to our mailing list to get send more fun riddles and brainteasers send directly to you every week.</p>
+                            <p> </p>
+                            <div class="modal-buttons">
+                                <button class="button.submit" type="submit" onclick="modalEmailInput()">Sign up to receive riddles weekly</button>
+                                <button class="button.sumbit" id="close-modal" >No, I don't want to train my brain</button>
+                            </div>
+                        </div>
+                        <div id="modal-phase2" class="center" style="display: none;">
                             <h2 style="color: #8cc9f0"><b>Subscribe for more</b></h2>
                             <p style="text-align: center;">Subscribe to our mailing list to get send more fun riddles and brainteasers send directly to you every week.</p>
                             <label>Your email: <input id="email" type="text"></label>
                             <p> </p>
                             <div class="modal-buttons">
-                                <button class="button.submit" type="submit" onclick="submitEmail()">Sign up to receive riddles weekly</button>
-                                <button class="button.sumbit" id="close-modal" >No, I don't want to train my brain</button>
+                                <button class="button.submit" type="submit" onclick="submitEmail()">Submit</button>
+                                <button class="button.sumbit" id="cancel-email" onclick="submitEmail()" >Cancel</button>
                             </div>
-                            
                         </div>
                         
                     </dialog>
@@ -138,7 +106,6 @@
             </section>
         </div>
     </div>
-    <script src="smtp.js"></script>
     <script src="copycat.js"></script>
     
 </body>

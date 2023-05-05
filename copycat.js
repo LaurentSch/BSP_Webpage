@@ -153,33 +153,7 @@ function submitAnswer() {
 	}
 }
 
-// Saves the selected radio button into the solution array by its id.
-function saveSolution() {
-	answers[currentPuzzle - 1] = ID("answer").value
-	
-}
-
-// sets the radio button to the users response
-function setRadio() {
-	if (answers[currentPuzzle] != null) {
-		switch (answers[currentPuzzle]) {
-			case "option1":
-				ID("option1").checked = true;
-				break;
-			case "option2":
-				ID("option2").checked = true;
-				break;
-			case "option3":
-				ID("option3").checked = true;
-				break;
-		}
-	} else {
-		ID("optionEmpty").checked = true;
-	}
-}
-
-
-// Checks how many of the answers are correct. (Sample implementation: 1 is always correct.)
+// Checks how many of the answers are correct. (Sample implementation: 1 is always correct.) returns the number of correct answers as anm integer
 function evaluateScore() {
 	let score = 0;
 	for (let i = 0; i < solutions.length; i++) {
@@ -193,7 +167,34 @@ function evaluateScore() {
 			}
 		}
 	}
-	ID("score").innerText = "Your Result is: " + score.toString() + "/4";
+	return score;
+	
+}
+
+//takes user score and reacts to it
+function scoreReaction(userScore) {
+	switch (userScore) {
+		case 1:
+			ID("modal-score").innerHTML = "<b>Result:</b> " + userScore.toString() + "/4. Could be better.";
+			ID("modal-score").style.color = "#861407";
+			break;
+		case 2:
+			ID("modal-score").innerHTML = "<b>Result:</b> " + userScore.toString() + "/4. You are getting there.";
+			ID("modal-score").style.color = "#8cc9f0";
+			break;
+		case 3:
+			ID("modal-score").innerHTML = "<b>Result:</b> " + userScore.toString() + "/4. Pretty Good.";
+			ID("modal-score").style.color = "#04620b";
+			break;
+		case 4:
+			ID("modal-score").innerHTML = "<b>Result:</b> " + userScore.toString() + "/4. Perfect. Good job!";
+			ID("modal-score").style.color = "#04620b";
+			break;
+		default:
+			ID("modal-score").innerHTML = "<b>Result:</b> " + userScore.toString() + "/4. Were you even trying?";
+			ID("modal-score").style.color = "#861407";
+			break;
+	}
 }
 
 // split the user input into a list of words that were seperated by a space and put everything to lowercase
@@ -207,17 +208,7 @@ function prepare_answer(answer) {
 	return prep_array
 }
 
-function finishQuizz() {
-	const finish_modal = ID("finish-modal");
-	finish_modal.showModal();
-	ID("cancel").addEventListener("click", () => {
-		finish_modal.close();
-	});
-	ID("finish-quizz").addEventListener("click", () => {
-		finish_modal.close();
-		finalPageSetup();
-	});
-}
+
 
 function finalPageSetup() {
 	saveSolution();
@@ -235,21 +226,31 @@ function emailPromt() {
 	// result.style.display = 'none';
 	// emailPrompt.style.display = 'block'
 	//prompt("Enter your email to receive further Quizzes.", "example@email.com");
-	const modal = ID('modal');
+	let userScore = evaluateScore();
+	scoreReaction(userScore);
+	const modal = ID('email-prompt');
 	modal.showModal();
 	ID("close-modal").addEventListener("click", () => {
 		modal.close();
-
 		smtpCode("None");
 	});
+}
+
+// sets up the second part of the email promt modal
+function modalEmailInput() {
+	ID("modal-phase2").style.display = "block"
+ 	ID("modal-phase1").style.display = "none"
 }
 
 function submitEmail() {
 	console.log("Test");
 	let email = ID("email").value;
+	if (email == "") {
+		email = "None-Canceled";
+	}
+	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
 	smtpCode(email);
-	const modal = ID('modal');
-	modal.close();
+	
 }
 
 // Takes a string with the users email and sends an email with these fields to Host
