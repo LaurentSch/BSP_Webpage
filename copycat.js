@@ -51,6 +51,7 @@ let answers = new Array(4).fill(null);
 // let email = "None";
 let prolificId = "None";
 let userTime;
+let userScore;
 
 // use FuzzySet to account for missspelling of the words
 // let solutions_fuzzy = new Array(5);
@@ -229,7 +230,7 @@ function emailPromt() {
 	// result.style.display = 'none';
 	// emailPrompt.style.display = 'block'
 	//prompt("Enter your email to receive further Quizzes.", "example@email.com");
-	let userScore = evaluateScore();
+	userScore = evaluateScore();
 	scoreReaction(userScore);
 	const modal = ID('email-prompt');
 	modal.showModal();
@@ -265,6 +266,7 @@ function submitToFormspree(email) {
 	let formData = {
 		prolific_Id: prolificId,
 		email_address: email,
+		correct_answers_nbr: userScore,
 		time_spend: userTime
 	};
 
