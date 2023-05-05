@@ -43,13 +43,14 @@ explanations[3] = "The answer is <b>Time:</b><hr>"
 
 // save the users answers
 let answers = new Array(4).fill(null);
-// set timer in seconds
-let timeLeft = 300;
-let countdownTimer;
+// set timer in seconds (required for the contdown timer)
+// let timeLeft = 300;
+// let countdownTimer;
+
 // save user information
 // let email = "None";
-let prolificId = "None"
-
+let prolificId = "None";
+let userTime;
 
 // use FuzzySet to account for missspelling of the words
 // let solutions_fuzzy = new Array(5);
@@ -64,8 +65,9 @@ function startPuzzle() {
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
-	updateTimer();
-    countdownTimer = setInterval(updateTimer, 1000);
+	// updateTimer();
+    // countdownTimer = setInterval(updateTimer, 1000);
+	userTime = new Date().getTime();
 }
 
 // changes the view based on the puzzle number.
@@ -126,17 +128,17 @@ function goNext() {
 }
 
 // Checks if there is a previous puzzle and calls updatePuzzlethen calls saveSolution and updatePuzzle
-function goBack() {
-    if (currentPuzzle > 1) {
-		saveSolution()
-        currentPuzzle--;
-        updatePuzzle(currentPuzzle);
-		ID("answer").value = answers[currentPuzzle - 1]
+// function goBack() {
+//     if (currentPuzzle > 1) {
+// 		saveSolution()
+//         currentPuzzle--;
+//         updatePuzzle(currentPuzzle);
+// 		ID("answer").value = answers[currentPuzzle - 1]
 		
-        //update header
-        // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
-    }
-}
+//         //update header
+//         // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
+//     }
+// }
 
 // Submit user answer, reveal solution, hide 'submit' button and reveal 'next' button
 function submitAnswer() {
@@ -147,8 +149,12 @@ function submitAnswer() {
 	ID("next-btn").style.display = "inline-block"
 	ID("user-input").style.display = "none"
 	if (currentPuzzle == 4) {
+		let endTime = new Date().getTime();
+		let timeSpent = endTime - userTime;
+		// miliseconds to seconds
+		userTime = timeSpent / 1000;
 		ID("finish-btn").style.display = 'inline-block';
-		ID("next-btn").style.display = "none"
+		ID("next-btn").style.display = "none";
 	}
 }
 
@@ -207,19 +213,17 @@ function prepare_answer(answer) {
 	return prep_array
 }
 
-
-
-function finalPageSetup() {
-	saveSolution();
-	puzzle.style.display = 'none';
-	result.style.display = 'block';
-	evaluateScore();
-	// call emailPromt after 3000 miliseconds
-	setTimeout(() => {
-		console.log("Delayed for 6 second.");
-		emailPromt()
-	}, 6000);
-}
+// function finalPageSetup() {
+// 	saveSolution();
+// 	puzzle.style.display = 'none';
+// 	result.style.display = 'block';
+// 	evaluateScore();
+// 	// call emailPromt after 3000 miliseconds
+// 	setTimeout(() => {
+// 		console.log("Delayed for 6 second.");
+// 		emailPromt()
+// 	}, 6000);
+// }
 
 function emailPromt() {
 	// result.style.display = 'none';
@@ -257,11 +261,11 @@ function submitEmail() {
 
 // Takes a string with the users email and submits it to Formspree.io 
 function submitToFormspree(email) {
-// Define the form data as an object
+	// Define the form data as an object
 	let formData = {
 		prolific_Id: prolificId,
 		email_address: email,
-		time_spend: 300-timeLeft
+		time_spend: userTime
 	};
 
 	// Make an HTTP POST request to the Formspree endpoint
@@ -284,23 +288,25 @@ function submitToFormspree(email) {
 	});
 }
 
-function updateTimer() {
-	// Calculate the minutes and seconds remaining
-	const minutes = Math.floor(timeLeft / 60);
-	const seconds = timeLeft % 60;
 
-	// Format the minutes and seconds with leading zeros
-	const formattedMinutes = minutes.toString().padStart(2, '0');
-	const formattedSeconds = seconds.toString().padStart(2, '0');
+// Updates the timer html element with a countdown.
+// function updateTimer() {
+// 	// Calculate the minutes and seconds remaining
+// 	const minutes = Math.floor(timeLeft / 60);
+// 	const seconds = timeLeft % 60;
 
-	// Update the timer text
-	ID("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+// 	// Format the minutes and seconds with leading zeros
+// 	const formattedMinutes = minutes.toString().padStart(2, '0');
+// 	const formattedSeconds = seconds.toString().padStart(2, '0');
 
-	// Check if the countdown has ended
-	if (timeLeft === 0) {
-		clearInterval(countdownTimer);
-		finalPageSetup();
-	} else {
-		timeLeft--;
-	}
-}
+// 	// Update the timer text
+// 	ID("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+
+// 	// Check if the countdown has ended
+// 	if (timeLeft === 0) {
+// 		clearInterval(countdownTimer);
+// 		finalPageSetup();
+// 	} else {
+// 		timeLeft--;
+// 	}
+// }
