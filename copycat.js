@@ -1,4 +1,3 @@
-//import "smtp";
 // const FuzzySet = require('fuzzyset')
 // to circumvent calling 'document.getElementById('id');' a million times
 function ID(elementId) {
@@ -232,7 +231,7 @@ function emailPromt() {
 	modal.showModal();
 	ID("close-modal").addEventListener("click", () => {
 		modal.close();
-		smtpCode("None");
+		submitToFormspree("None");
 	});
 }
 
@@ -249,25 +248,38 @@ function submitEmail() {
 		email = "None-Canceled";
 	}
 	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
-	smtpCode(email);
+	submitToFormspree(email);
 	
 }
 
-// Takes a string with the users email and sends an email with these fields to Host
-function smtpCode(email) {
-	smpt.Email.send({
-		Host : "smtp.gmail.com",
-		Username : "translucent.traveler@gmail.com",
-		Password : "XXX",
-		To : 'laurent.schmidt.001@student.uni.lu',
-		From : "confirmshame@BSP.com",
-		Subject : "Confirmshame Prompt submission",
-		Body : "Time spend," + (300 - timeLeft) + "\n"
-			+ "Email," + email + "\n"
-			+ "prolific id," + prolificId + "\n"
-	}).then(
-  		console.log("The email was sent")
-	);
+
+// Takes a string with the users email and submits it to Formspree.io 
+function submitToFormspree(email) {
+// Define the form data as an object
+	let formData = {
+		prolific_Id: prolificId,
+		email_address: email,
+		time_spend: 300-timeLeft
+	};
+
+	// Make an HTTP POST request to the Formspree endpoint
+	fetch("https://formspree.io/xknayqpb", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(formData)
+	})
+	.then(response => {
+		if (response.ok) {
+			console.log("Form submitted successfully!");
+		} else {
+			console.error("Form submission failed:", response.status);
+		}
+	})
+	.catch(error => {
+		console.error("Form submission failed:", error);
+	});
 }
 
 function updateTimer() {
