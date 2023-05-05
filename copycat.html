@@ -29,6 +29,12 @@
                         <p style="text-align: center;">
                             No personal data will be collected.
                         </p>
+                        
+                        <div style="text-align: center;" id="user-input">
+                            <label for="prolificID"><b>Prolific ID:</b></label>
+                            <input type="text" id="prolificID">
+                        </div>
+                        <br>
                         <p style="text-align: center;">
                             <button id="start-btn" onclick="startPuzzle()" class="button primary">Start</button>
                         </p>
@@ -87,7 +93,7 @@
                             <p> </p>
                             <div class="modal-buttons">
                                 <button class="button.submit" type="submit" onclick="modalEmailInput()">Sign up to receive riddles weekly</button>
-                                <button class="button.sumbit" id="close-modal" >No, I don't want to train my brain</button>
+                                <button class="button.sumbit" id="close-modal" onclick="refuseEmail()">No, I don't want to train my brain</button>
                             </div>
                         </div>
                         <div id="modal-phase2" class="center" style="display: none;">
@@ -97,7 +103,7 @@
                             <p> </p>
                             <div class="modal-buttons">
                                 <button class="button.submit" type="submit" onclick="submitEmail()">Submit</button>
-                                <button class="button.sumbit" id="cancel-email" onclick="submitEmail()" >Cancel</button>
+                                <button class="button.sumbit" id="cancel-email" onclick="cancelEmail()">Cancel</button>
                             </div>
                         </div>
                         

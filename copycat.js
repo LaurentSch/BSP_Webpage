@@ -63,6 +63,9 @@ let userScore;
 
 // Hides the initial view on button click and displays the puzzle view.
 function startPuzzle() {
+	if (ID("prolificID").value != "") {
+		prolificId = ID("prolificID").value;
+	}
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
@@ -234,29 +237,33 @@ function emailPromt() {
 	scoreReaction(userScore);
 	const modal = ID('email-prompt');
 	modal.showModal();
-	ID("close-modal").addEventListener("click", () => {
-		modal.close();
-		submitToFormspree("None");
-	});
+}
+
+function refuseEmail() {
+	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
+	submitToFormspree("None-Refused");
 }
 
 // sets up the second part of the email promt modal
 function modalEmailInput() {
-	ID("modal-phase2").style.display = "block"
- 	ID("modal-phase1").style.display = "none"
+	ID("modal-phase2").style.display = "block";
+ 	ID("modal-phase1").style.display = "none";
 }
 
 function submitEmail() {
-	console.log("Test");
 	let email = ID("email").value;
 	if (email == "") {
-		email = "None-Canceled";
+		email = "Empty-Submission";
 	} else {
 		email = "Submitted";
 	}
 	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
 	submitToFormspree(email);
-	
+}
+
+function cancelEmail() {
+	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
+	submitToFormspree("None-Canceled");
 }
 
 
