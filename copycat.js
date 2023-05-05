@@ -69,8 +69,6 @@ function startPuzzle() {
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
-	// updateTimer();
-    // countdownTimer = setInterval(updateTimer, 1000);
 	userTime = new Date().getTime();
 }
 
@@ -122,27 +120,10 @@ function updatePuzzle(currentPuzzle) {
 // Checks if there is a next puzzle then calls saveSolution and updatePuzzle
 function goNext() {
 	if (currentPuzzle < 5) {
-		// saveSolution()
 		currentPuzzle++;
 		updatePuzzle(currentPuzzle);
-		// ID("answer").value = answers[currentPuzzle - 1]
-        // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
 	}
-    //console.log("aiogfuhapiefgba8izwegf8iewgfaiwezugfapö<iewzfgbapöiugfpöaeiugf")
 }
-
-// Checks if there is a previous puzzle and calls updatePuzzlethen calls saveSolution and updatePuzzle
-// function goBack() {
-//     if (currentPuzzle > 1) {
-// 		saveSolution()
-//         currentPuzzle--;
-//         updatePuzzle(currentPuzzle);
-// 		ID("answer").value = answers[currentPuzzle - 1]
-		
-//         //update header
-//         // ID("puzzle-number").innerText  = 'Puzzle ' +  currentPuzzle + '/5';
-//     }
-// }
 
 // Submit user answer, reveal solution, hide 'submit' button and reveal 'next' button
 function submitAnswer() {
@@ -217,22 +198,8 @@ function prepare_answer(answer) {
 	return prep_array
 }
 
-// function finalPageSetup() {
-// 	saveSolution();
-// 	puzzle.style.display = 'none';
-// 	result.style.display = 'block';
-// 	evaluateScore();
-// 	// call emailPromt after 3000 miliseconds
-// 	setTimeout(() => {
-// 		console.log("Delayed for 6 second.");
-// 		emailPromt()
-// 	}, 6000);
-// }
 
 function emailPromt() {
-	// result.style.display = 'none';
-	// emailPrompt.style.display = 'block'
-	//prompt("Enter your email to receive further Quizzes.", "example@email.com");
 	userScore = evaluateScore();
 	scoreReaction(userScore);
 	const modal = ID('email-prompt');
@@ -296,26 +263,3 @@ function submitToFormspree(email) {
 		console.error("Form submission failed:", error);
 	});
 }
-
-
-// Updates the timer html element with a countdown.
-// function updateTimer() {
-// 	// Calculate the minutes and seconds remaining
-// 	const minutes = Math.floor(timeLeft / 60);
-// 	const seconds = timeLeft % 60;
-
-// 	// Format the minutes and seconds with leading zeros
-// 	const formattedMinutes = minutes.toString().padStart(2, '0');
-// 	const formattedSeconds = seconds.toString().padStart(2, '0');
-
-// 	// Update the timer text
-// 	ID("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
-
-// 	// Check if the countdown has ended
-// 	if (timeLeft === 0) {
-// 		clearInterval(countdownTimer);
-// 		finalPageSetup();
-// 	} else {
-// 		timeLeft--;
-// 	}
-// }
