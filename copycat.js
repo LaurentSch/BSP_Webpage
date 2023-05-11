@@ -60,6 +60,33 @@ let userScore;
 // solutions_fuzzy[2] = solutions[2].map(answer => FuzzySet([answer]));
 
 
+// Executed immediately when the webpage is opened
+document.addEventListener("DOMContentLoaded", function(event) {
+	console.log("Initial function executed")
+	buttonValidation("prolificID", "start-btn");
+});
+
+
+// Set the button to disabled if input field is empty
+function buttonValidation(inputId, buttonId) {
+  	const inputField = ID(inputId);
+  	const button = ID(buttonId);
+
+	function validateButton() {
+		if (inputField.value.trim() === "") {
+		button.disabled = true;
+		} else {
+		button.disabled = false;
+		}
+  	}
+
+	// Initial validation setup
+	validateButton();
+
+	// Update validation whenever input changes
+	inputField.addEventListener("input", validateButton);
+}
+
 
 // Hides the initial view on button click and displays the puzzle view.
 function startPuzzle() {
@@ -218,6 +245,7 @@ function refuseEmail() {
 function modalEmailInput() {
 	ID("modal-phase2").style.display = "block";
  	ID("modal-phase1").style.display = "none";
+	buttonValidation("email", "submit-email-btn");
 }
 
 function submitEmail() {
