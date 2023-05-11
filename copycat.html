@@ -96,10 +96,11 @@
                                 <button class="button.sumbit" id="close-modal" onclick="refuseEmail()">No, I don't want to train my brain</button>
                             </div>
                         </div>
-                        <div id="modal-phase2" class="center" style="display: none;">
+                        <div id="modal-phase2" class="center" style="display: none; text-align: center;">
                             <h2 style="color: #8cc9f0"><b>Subscribe for more</b></h2>
                             <p style="text-align: center;">Subscribe to our mailing list to get send more fun riddles and brainteasers send directly to you every week.</p>
-                            <label>Your email: <input id="email" type="text"></label>
+                            <label><b>Your email:</b> <input placeholder="Enter your email" id="email" type="text"></label> <br>
+                            <span id="emailErrorMessage" class="error-message" style="display: none; color: red; font-size: 12px; margin-top: 4px;"></span>
                             <p> </p>
                             <div class="modal-buttons">
                                 <button id="submit-email-btn" class="button.submit" type="submit" onclick="submitEmail()">Submit</button>

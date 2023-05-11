@@ -65,7 +65,7 @@ let userScore;
 async function sha256(message) {
 	// encode as UTF-8
 	const msgBuffer = new TextEncoder('utf-8').encode(message);
-
+	
 	// hash the message
 	const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
 
@@ -293,13 +293,15 @@ function modalEmailInput() {
 
 function submitEmail() {
 	let email = ID("email").value;
-	if (email == "") {
-		email = "Empty-Submission";
+	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailPattern.test(email)) {
+		emailErrorMessage.innerText = "Please enter a valid email address.";
+    	emailErrorMessage.style.display = "inline";
 	} else {
 		email = "Submitted";
-	}
-	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
-	submitToFormspree(email);
+		window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
+		submitToFormspree(email);
+	}	
 }
 
 function cancelEmail() {
