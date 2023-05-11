@@ -60,10 +60,29 @@ let userScore;
 // solutions_fuzzy[2] = solutions[2].map(answer => FuzzySet([answer]));
 
 
+// SHA-256 encription as found here https://stackoverflow.com/questions/59777670/how-can-i-hash-a-string-with-sha256-in-js
+async function sha256(message) {
+	// encode as UTF-8
+	const msgBuffer = new TextEncoder('utf-8').encode(message);
+
+	// hash the message
+	const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
+
+	// convert ArrayBuffer to Array
+	const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+	// convert bytes to hex string
+	const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+	console.log(hashHex);
+	return hashHex;
+}
+
+
 // Executed immediately when the webpage is opened
 document.addEventListener("DOMContentLoaded", function(event) {
 	console.log("Initial function executed")
 	buttonValidation("prolificID", "start-btn");
+	
 });
 
 
@@ -92,12 +111,19 @@ function buttonValidation(inputId, buttonId) {
 function startPuzzle() {
 	if (ID("prolificID").value != "") {
 		prolificId = ID("prolificID").value;
+		sha256(prolificId).then(function(hash) {
+			prolificId = hash;
+			console.log("The hash of profilic is = " + prolificId);
+		});
+		console.log("The hash of 1234 is = " + sha256("1234"));
+
 	}
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
     updatePuzzle(currentPuzzle);
 	userTime = new Date().getTime();
 }
+
 
 // changes the view based on the puzzle number.
 function updatePuzzle(currentPuzzle) {
