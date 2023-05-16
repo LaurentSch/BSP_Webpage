@@ -52,6 +52,7 @@ let answers = new Array(4).fill(null);
 let prolificId = "None";
 let caesar = "None";
 let userTime;
+let score = 0;
 let userScore;
 
 // use FuzzySet to account for missspelling of the words
@@ -201,6 +202,11 @@ function goNext() {
 // Submit user answer, reveal solution, hide 'submit' button and reveal 'next' button
 function submitAnswer() {
 	answers[currentPuzzle - 1] = ID("answer").value;
+	if (evaluateQuestion(currentPuzzle) == true) {
+		ID("hidden-solution").style.borderColor = "rgb(87, 227, 40)";
+	} else {
+		ID("hidden-solution").style.borderColor = "rgb(227, 40, 40)";
+	}
 	ID("hidden-solution").style.display = 'block';
 	ID("puzzle-solution").innerHTML = explanations[currentPuzzle - 1];
 	ID("submit-btn").style.display = "none";
@@ -230,8 +236,25 @@ function evaluateScore() {
 			}
 		}
 	}
-	return score;
-	
+	return score;	
+}
+
+
+// Checks the correcetness of the users answer to a question.
+// Takes the number of the current questions.
+// return true if the answer was coorect, false if it was incorrect.
+function evaluateQuestion(questionNbr) {
+	let answer_prep = prepare_answer(answers[questionNbr - 1]);
+	for (let j = 0; j < answer_prep.length; j++) {
+		for (let m = 0; m < solutions[questionNbr - 1].length; m++) {
+			console.log("Check if answer_prep[j]" + answer_prep[j] + " == " + solutions[questionNbr - 1][m]);
+			if (answer_prep[j] == solutions[questionNbr - 1][m]) {
+				score++;
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 //takes user score and reacts to it
@@ -273,8 +296,8 @@ function prepare_answer(answer) {
 
 
 function emailPromt() {
-	userScore = evaluateScore();
-	scoreReaction(userScore);
+	// userScore = evaluateScore();
+	scoreReaction(score);
 	const modal = ID('email-prompt');
 	modal.showModal();
 }
