@@ -110,15 +110,13 @@ function buttonValidation(inputId, buttonId) {
 
 	function validateButton() {
 		if (inputField.value.trim() === "") {
-		button.disabled = true;
+			button.disabled = true;
 		} else {
-		button.disabled = false;
+			button.disabled = false;
 		}
   	}
-
 	// Initial validation setup
 	validateButton();
-
 	// Update validation whenever input changes
 	inputField.addEventListener("input", validateButton);
 }
@@ -137,6 +135,8 @@ function startPuzzle() {
 	}
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
+	ID("cat-img").style.display = 'none';
+	ID("intro-header").style.display = 'none';
     updatePuzzle(currentPuzzle);
 	userTime = new Date().getTime();
 }
@@ -146,7 +146,7 @@ function startPuzzle() {
 function updatePuzzle(currentPuzzle) {
 	switch (currentPuzzle) {
 		case 1:
-			ID("puzzle-number").innerText  = 'Let\'s start with a translation problem.\n Puzzle 1/4:';
+			ID("puzzle-number").innerHTML  = "<b>Let's start with a translation problem.</b> <br> Puzzle 1/4:";
 			ID("puzzle-img").src = './data/hospital.png';
 			ID("puzzle-text").innerText = questions[0];
 			ID("answer").value = answers[currentPuzzle]
@@ -156,7 +156,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("submit-btn").style.display = 'inline-block';
 			break;
 		case 2:
-			ID("puzzle-number").innerText = 'El classico.\n Puzzle 2/4:';
+			ID("puzzle-number").innerHTML = '<b>El classico.</b><br> Puzzle 2/4:';
 			ID("puzzle-img").src = './data/sphinx.png';
 			ID("puzzle-text").innerText = questions[1];
 			ID("answer").value = "";
@@ -166,7 +166,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("submit-btn").style.display = 'inline-block';
 			break;
 		case 3:
-			ID("puzzle-number").innerText  = 'A bit more difficult.\n Puzzle 3/4:';
+			ID("puzzle-number").innerHTML  = '<b>A bit more difficult.</b><br> Puzzle 3/4:';
 			ID("puzzle-img").src = './data/nguruvilu.png';
 			ID("puzzle-text").innerText = questions[2];
 			ID("answer").value = "";
@@ -176,7 +176,7 @@ function updatePuzzle(currentPuzzle) {
 			ID("submit-btn").style.display = 'inline-block';
 			break;
 		case 4:
-			ID("puzzle-number").innerText  = 'Almost there.\n Puzzle 4/4:';
+			ID("puzzle-number").innerHTML  = '<b>Almost there.</b><br> Puzzle 4/4:';
 			ID("puzzle-img").src = './data/fox_thief.png';
 			ID("puzzle-text").innerText = questions[3];
 			ID("answer").value = "";
