@@ -24,10 +24,13 @@
                     </div>    
                     <div id="initial" class="content">
                         <p style="margin-bottom: 10; text-align: center;">
-                            This is a study conducted by the university of Luxembourg.
+                            During this study, you will get challenged with multiple fun riddels.
+                            Try to answer them as best as you can, but don't worry if you are unable to find a good solution.
+                            Be warned, that once an answer is submitted, you can not go back to change it. <br>
+                            After the riddles, you will be asked to fill out a survey about your experience with the webpage.
                         </p>
                         <p style="text-align: center;">
-                            No personal data will be collected.
+                        Can <b>you</b> get a perfect score?
                         </p>
                         
                         <div style="text-align: center;" id="user-input">
@@ -62,15 +65,12 @@
                                 puzzle solution
                             </p>
                         </div>    
-                        <div style="text-align: center;" id="user-input">
-                            <label for="answer"><b>Answer:</b></label>
+                        <div id="user-input" style="text-align: center;">
+                            <label for="answer"><b>Answer:</b></label> <br>
                             <input type="text" id="answer">
                         </div>
-                            
-                        
-                        
                         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-                            <button id="submit-btn" onclick="submitAnswer()" class="button primary" >Submit</button>
+                            <button id="submit-btn" onclick="submitAnswer()" class="button primary">Submit</button>
                             <button id="next-btn" onclick="goNext()" class="button primary" style="display: none;">Next</button>
                             <button id="finish-btn" onclick="emailPromt()" class="button primary" style="display: none;">Finish</in>
                         </div>
