@@ -309,13 +309,13 @@ function submitToFormspree(email) {
 	let formData = {
 		prolific_Id: prolificId,
 		email_address: email,
-		correct_answers_nbr: score,
-		time_spend: userTime,
-		caesar: caesar
+		correct_answers_nbr: score.toString(),
+		time_spend: userTime.toString(),
+		caesar: caesar.toString()
 	};
 
-	// Make an HTTP POST request to the Formspree endpoint
-	fetch("https://formspree.io/xknayqpb", {
+	// Make an HTTP POST request to the Formsubmit endpoint
+	fetch("https://formsubmit.co/8edba78440eb65ee3c074c86a3244cbb", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
