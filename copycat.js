@@ -309,7 +309,7 @@ function submitToFormspree(email) {
 	let formData = {
 		prolific_Id: prolificId,
 		email_address: email,
-		correct_answers_nbr: userScore,
+		correct_answers_nbr: score,
 		time_spend: userTime,
 		caesar: caesar
 	};
