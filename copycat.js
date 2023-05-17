@@ -16,7 +16,7 @@ questions[3] = "I'm a thief that cannot be caught, \nStealing moments that canno
 let solutions = new Array(4);
 solutions[0] = new Array("mom", "mother", "mum");
 solutions[1] = new Array("human", "person", "man");
-solutions[2] = new Array("river", "stream");
+solutions[2] = new Array("river", "stream", "water");
 solutions[3] = new Array("time")
 // The full explanations for the user
 let explanations = new Array(4);
@@ -43,17 +43,15 @@ explanations[3] = "The answer is <b>Time:</b><hr>"
 
 // save the users answers
 let answers = new Array(4).fill(null);
-// set timer in seconds (required for the contdown timer)
-// let timeLeft = 300;
-// let countdownTimer;
 
 // save user information
-// let email = "None";
 let prolificId = "None";
+// store caesar cypther
 let caesar = "None";
+// Tracks time spend on website
 let userTime;
+// Tracks amount of correct answers by the user 
 let score = 0;
-let userScore;
 
 // use FuzzySet to account for missspelling of the words
 // let solutions_fuzzy = new Array(5);
@@ -100,11 +98,10 @@ function caesarCipher(message, shift) {
 document.addEventListener("DOMContentLoaded", function(event) {
 	console.log("Initial function executed")
 	buttonValidation("prolificID", "start-btn");
-	
 });
 
 
-// Set the button to disabled if input field is empty
+// Set the button to disabled if corresponding input field is empty
 function buttonValidation(inputId, buttonId) {
   	const inputField = ID(inputId);
   	const button = ID(buttonId);
@@ -132,7 +129,6 @@ function startPuzzle() {
 			console.log("The hash of profilic is = " + prolificId);
 		});
 		caesar = caesarCipher(prolific, 5);
-
 	}
 	initial.style.display = 'none';
     puzzle.style.display = 'block';
@@ -149,49 +145,39 @@ function updatePuzzle(currentPuzzle) {
 		case 1:
 			ID("puzzle-number").innerHTML  = "<b>Let's start with a translation problem.</b> <br> Puzzle 1/4:";
 			ID("puzzle-img").src = './data/hospital.png';
-			ID("puzzle-text").innerText = questions[0];
-			ID("answer").value = answers[currentPuzzle]
-			ID("next-btn").style.display = 'none';
-			ID("hidden-solution").style.display = 'none';
-			ID("user-input").style.display = "block"
-			ID("submit-btn").style.display = 'inline-block';
+			updateHelper(0);
 			break;
 		case 2:
 			ID("puzzle-number").innerHTML = '<b>El classico.</b><br> Puzzle 2/4:';
 			ID("puzzle-img").src = './data/sphinx.png';
-			ID("puzzle-text").innerText = questions[1];
-			ID("answer").value = "";
-			ID("next-btn").style.display = 'none';
-			ID("hidden-solution").style.display = 'none';
-			ID("user-input").style.display = "block"
-			ID("submit-btn").style.display = 'inline-block';
+			updateHelper(0);
 			break;
 		case 3:
 			ID("puzzle-number").innerHTML  = '<b>A bit more difficult.</b><br> Puzzle 3/4:';
 			ID("puzzle-img").src = './data/nguruvilu.png';
-			ID("puzzle-text").innerText = questions[2];
-			ID("answer").value = "";
-			ID("next-btn").style.display = 'none';
-			ID("hidden-solution").style.display = 'none';
-			ID("user-input").style.display = "block"
-			ID("submit-btn").style.display = 'inline-block';
+			updateHelper(2);
 			break;
 		case 4:
 			ID("puzzle-number").innerHTML  = '<b>Almost there.</b><br> Puzzle 4/4:';
 			ID("puzzle-img").src = './data/thief.png';
-			ID("puzzle-text").innerText = questions[3];
-			ID("answer").value = "";
-			ID("next-btn").style.display = 'none';
-			ID("hidden-solution").style.display = 'none';
-			ID("user-input").style.display = "block"
-			ID("submit-btn").style.display = 'inline-block';
+			updateHelper(3);
 			break;
 		default:
 			break;
 	}
 }
 
-// Checks if there is a next puzzle then calls saveSolution and updatePuzzle
+// Helper function to reduce dublicate code when setting up the next riddle page
+function updateHelper(questionNumber) {
+	ID("puzzle-text").innerText = questions[questionNumber];
+	ID("answer").value = "";
+	ID("next-btn").style.display = 'none';
+	ID("hidden-solution").style.display = 'none';
+	ID("user-input").style.display = "block"
+	ID("submit-btn").style.display = 'inline-block';
+}
+
+// Checks if there is a next puzzle and if yes calls updatePuzzle
 function goNext() {
 	if (currentPuzzle < 5) {
 		currentPuzzle++;
@@ -210,8 +196,8 @@ function submitAnswer() {
 	ID("hidden-solution").style.display = 'block';
 	ID("puzzle-solution").innerHTML = explanations[currentPuzzle - 1];
 	ID("submit-btn").style.display = "none";
+	ID("user-input").style.display = "none";
 	ID("next-btn").style.display = "inline-block"
-	ID("user-input").style.display = "none"
 	if (currentPuzzle == 4) {
 		let endTime = new Date().getTime();
 		let timeSpent = endTime - userTime;
@@ -221,24 +207,6 @@ function submitAnswer() {
 		ID("next-btn").style.display = "none";
 	}
 }
-
-// Checks how many of the answers are correct. (Sample implementation: 1 is always correct.) returns the number of correct answers as anm integer
-function evaluateScore() {
-	let score = 0;
-	for (let i = 0; i < solutions.length; i++) {
-		let answer_prep = prepare_answer(answers[i]);
-		for (let j = 0; j < answer_prep.length; j++) {
-			for (let m = 0; m < solutions[i].length; m++) {
-				console.log("Check if answer_prep[j]" + answer_prep[j] + " == " + solutions[i][m]);
-				if (answer_prep[j] == solutions[i][m]) {
-					score++;
-				}
-			}
-		}
-	}
-	return score;	
-}
-
 
 // Checks the correcetness of the users answer to a question.
 // Takes the number of the current questions.
@@ -257,7 +225,7 @@ function evaluateQuestion(questionNbr) {
 	return false;
 }
 
-//takes user score and reacts to it
+//takes user score and reacts to it in the email prompt modal.
 function scoreReaction(userScore) {
 	switch (userScore) {
 		case 1:
@@ -294,14 +262,14 @@ function prepare_answer(answer) {
 	return prep_array
 }
 
-
+// Executed on 'Finish' button press. Reveals modal.
 function emailPromt() {
-	// userScore = evaluateScore();
 	scoreReaction(score);
 	const modal = ID('email-prompt');
 	modal.showModal();
 }
 
+// Executed when user refuses to submit their email.
 function refuseEmail() {
 	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
 	submitToFormspree("None-Refused");
@@ -314,6 +282,7 @@ function modalEmailInput() {
 	buttonValidation("email", "submit-email-btn");
 }
 
+// Executed on email submit button press. Checks if a valid email was input.
 function submitEmail() {
 	let email = ID("email").value;
 	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -327,13 +296,14 @@ function submitEmail() {
 	}	
 }
 
+// Executed when user initially agreed to submit their email, but changed their main later.
 function cancelEmail() {
 	window.location.href = 'https://forms.gle/zn7w5S56PpZigtqo8';
 	submitToFormspree("None-Canceled");
 }
 
 
-// Takes a string with the users email and submits it to Formspree.io 
+// Created a form with collected data and submits it to Formspree.io 
 function submitToFormspree(email) {
 	// Define the form data as an object
 	let formData = {
