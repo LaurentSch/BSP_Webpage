@@ -178,7 +178,7 @@ function updatePuzzle(currentPuzzle) {
 			break;
 		case 4:
 			ID("puzzle-number").innerHTML  = '<b>Almost there.</b><br> Puzzle 4/4:';
-			ID("puzzle-img").src = './data/fox_thief.png';
+			ID("puzzle-img").src = './data/thief.png';
 			ID("puzzle-text").innerText = questions[3];
 			ID("answer").value = "";
 			ID("next-btn").style.display = 'none';
